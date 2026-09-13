@@ -9,9 +9,10 @@ import (
 
 func (c *Controller) Retrieve(ctx context.Context, req *model.Request) ([]*model.SearchResult, error) {
 	search := &model.SearchRequest{
-		UserID:  req.UID,
-		Content: req.Content,
-		TopK:    10,
+		UserID:   req.UID,
+		Content:  req.Content,
+		TopK:     10,
+		KnnScore: req.KnnScore,
 	}
 	content, err := c.esRepo.BM25Search(ctx, search)
 	if err != nil {

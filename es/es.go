@@ -38,7 +38,7 @@ func init() {
 		}
 		Repo = &ESRepo{
 			es:    cli,
-			index: "rag_doc",
+			index: model.EsIndex,
 		}
 	})
 }
