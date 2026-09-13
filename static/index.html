@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG Retrieval Demo</title>
+
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- 顶部 -->
+  <header class="header">
+    <div>
+      <h1>RAG Retrieval Demo</h1>
+      <p>文档上传 · KNN 召回 · TopK 测试</p>
+    </div>
+
+    <div class="uid-box">
+      <span>当前用户 ID</span>
+      <strong id="uid"></strong>
+    </div>
+  </header>
+
+
+  <main class="layout">
+
+    <!-- 左侧配置 -->
+    <aside class="sidebar">
+
+      <!-- 文档上传 -->
+      <section class="panel">
+
+        <div class="panel-title">
+          上传文档
+        </div>
+
+        <label for="content">
+          文档内容
+        </label>
+
+        <textarea
+                id="content"
+                placeholder="输入需要写入 RAG 知识库的文字内容..."
+        ></textarea>
+
+
+        <label for="chunk">
+          Chunk Token 大小
+        </label>
+
+        <select id="chunk">
+          <option value="128">128</option>
+          <option value="512">512</option>
+          <option value="1024">1024</option>
+          <option value="2049">2049</option>
+          <option value="4096">4096</option>
+        </select>
+
+
+        <button
+                id="uploadBtn"
+                class="primary"
+        >
+          上传文档
+        </button>
+
+        <div
+                id="uploadStatus"
+                class="status"
+        ></div>
+
+      </section>
+
+
+      <!-- 召回参数 -->
+      <section class="panel">
+
+        <div class="panel-title">
+          召回参数
+        </div>
+
+
+        <label for="knnScore">
+          KNN Score 阈值（1-100）
+        </label>
+
+        <input
+                id="knnScore"
+                type="number"
+                min="1"
+                max="100"
+                value="70"
+        >
+
+
+        <label for="topK">
+          TopK（最大召回数量）
+        </label>
+
+        <input
+                id="topK"
+                type="number"
+                min="1"
+                value="5"
+        >
+
+
+        <div class="hint">
+          注意：每次打开页面都会重新生成 UID。
+          <br>
+          召回时 按UID进行隔离。
+        </div>
+
+      </section>
+
+    </aside>
+
+
+    <!-- 右侧聊天 -->
+    <section class="chat-panel">
+
+      <div
+              id="messages"
+              class="messages"
+      >
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            ⌕
+          </div>
+
+          <h2>
+            开始测试 RAG
+          </h2>
+
+          <p>
+            先上传文档，然后输入问题进行召回。
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- 输入框 -->
+      <form
+              id="chatForm"
+              class="composer"
+      >
+
+        <input
+                id="query"
+                autocomplete="off"
+                placeholder="输入问题，测试知识库召回..."
+        >
+
+        <button
+                type="submit"
+                class="primary"
+        >
+          召回
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script src="/static/app.js"></script>
+
+</body>
+</html>

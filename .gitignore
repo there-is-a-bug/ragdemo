@@ -1,0 +1,35 @@
+# 二进制编译产物
+/bin/
+/dist/
+*.exe
+*.out
+*.bin
+
+# Go 缓存
+/.idea/
+/.vscode/
+*.swp
+*.swo
+
+# 日志文件，重点！不要把日志提交到git
+log/
+*.log
+/fe/
+
+# 环境配置、密钥、私有配置（非常关键，防止frp密钥、数据库密码上传）
+.env
+*.ini
+config.local.toml
+
+# docker相关
+.dockerignore
+
+# 操作系统缓存
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+
+model/config.go
