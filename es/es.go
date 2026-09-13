@@ -144,7 +144,7 @@ func (e *ESRepo) search(ctx context.Context, body map[string]any, f *filter) ([]
 
 	var results []*model.SearchResult
 	for _, hit := range result.Hits.Hits {
-		if f.source == "knn" && int(hit.Score) < f.knnScore {
+		if f.source == "knn" && int(hit.Score*100) < f.knnScore {
 			continue
 		}
 		results = append(results, &model.SearchResult{
